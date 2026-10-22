@@ -1,0 +1,7 @@
+{
+  "year": 2025,
+  "firstHourPrice": 15.0,
+  "additionalHourPrice": 10.0,
+  "fullDayPrice": 80.0,
+  "validFrom": "2025-01-01"
+}

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport name="AnnualSummaryReport"
+              pageWidth="595" pageHeight="842" columnWidth="555"
+              leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+
+    <parameter name="REPORT_YEAR" class="java.lang.Integer"/>
+
+    <field name="parkingLotID" class="java.lang.Integer"/>
+    <field name="plName" class="java.lang.String"/>
+    <field name="city" class="java.lang.String"/>
+    <field name="totalAmount" class="java.lang.Double"/>
+    <field name="otherCount" class="java.lang.Long"/>
+
+    <title>
+        <band height="80">
+            <textField>
+                <reportElement x="0" y="0" width="555" height="26"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Annual Summary Report - Year " + $P{REPORT_YEAR}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="0" y="28" width="555" height="18"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="11" isBold="false" isItalic="true"/>
+                </textElement>
+                <text><![CDATA[Sorted by City (DESC) then Total Amount (ASC)]]></text>
+            </staticText>
+            <line>
+                <reportElement x="0" y="55" width="555" height="1"/>
+            </line>
+        </band>
+    </title>
+
+    <columnHeader>
+        <band height="26">
+            <rectangle>
+                <reportElement x="0" y="0" width="555" height="26" backcolor="#f2f2f2" mode="Opaque"/>
+            </rectangle>
+            <staticText>
+                <reportElement x="0" y="2" width="60" height="22"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font isBold="true" size="11"/>
+                </textElement>
+                <text><![CDATA[Lot ID]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="60" y="2" width="180" height="22"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font isBold="true" size="11"/>
+                </textElement>
+                <text><![CDATA[Name]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="240" y="2" width="120" height="22"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font isBold="true" size="11"/>
+                </textElement>
+                <text><![CDATA[City]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="360" y="2" width="100" height="22"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font isBold="true" size="11"/>
+                </textElement>
+                <text><![CDATA[Total Amount]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="460" y="2" width="95" height="22"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font isBold="true" size="11"/>
+                </textElement>
+                <text><![CDATA[Other Count]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <detail>
+        <band height="20">
+            <textField>
+                <reportElement x="0" y="1" width="60" height="18"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{parkingLotID}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="60" y="1" width="180" height="18"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{plName}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="240" y="1" width="120" height="18"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{city}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="360" y="1" width="100" height="18"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[String.format("%.2f", $F{totalAmount})]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="460" y="1" width="95" height="18"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[(int)Math.round($F{otherCount})]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+
+    <pageFooter>
+        <band height="18">
+            <textField>
+                <reportElement x="430" y="0" width="125" height="18"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+</jasperReport>
