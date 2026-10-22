@@ -1,0 +1,21 @@
+# Build output
+bin/
+out/
+target/
+*.class
+*.jar
+
+# IDE files
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Access lock files
+*.laccdb
